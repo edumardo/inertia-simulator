@@ -18,26 +18,27 @@ void setup()
     leftServo.WriteDegree(90);
     delay(2000);
 
-    inertiaAfterAccelerate(FORWARD);
+    inertiaAfterAccelerate(REVERSE);
 }
 
 void inertiaAfterAccelerate(movementDirection direction)
 {
     if (direction == FORWARD) {
-        leftServo.MoveDegrees(STEP_DEGREES, INIT_STEP_MS, returnServoToIdle);
+        leftServo.MoveDegrees((IDLE_DEGREES - STEP_DEGREES) * 2, INIT_STEP_MS, returnServoToIdle);
     }
     else {
-        leftServo.MoveDegrees((IDLE_DEGREES - STEP_DEGREES) * 2, INIT_STEP_MS, returnServoToIdle);
+
+        leftServo.MoveDegrees(STEP_DEGREES, INIT_STEP_MS, returnServoToIdle);
     }
 }
 
 void inertiaAfterStop(movementDirection direction)
 {
     if (direction == FORWARD) {
-        leftServo.MoveDegrees((IDLE_DEGREES - STEP_DEGREES) * 2, INIT_STEP_MS, returnServoToIdle);
+        leftServo.MoveDegrees(STEP_DEGREES, INIT_STEP_MS, returnServoToIdle);
     }
     else {
-        leftServo.MoveDegrees(STEP_DEGREES, INIT_STEP_MS, returnServoToIdle);
+        leftServo.MoveDegrees((IDLE_DEGREES - STEP_DEGREES) * 2, INIT_STEP_MS, returnServoToIdle);
     }
 }
 
